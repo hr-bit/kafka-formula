@@ -17,7 +17,7 @@ kafka-config:
     - context:
       zookeepers: {{ zk.connection_string }}
     - require:
-      - pkg: confluent-kafka-2.11
+      - pkg: confluent-kafka
 
 kafka-environment:
   file.managed:
@@ -30,7 +30,7 @@ kafka-service:
     - name: kafka
     - enable: True
     - require:
-      - pkg: confluent-kafka-2.11
+      - pkg: confluent-kafka
       - file: kafka-environment
       - file: kafka-systemd-unit
     {%- if kafka.restart_on_config_change == True %}
